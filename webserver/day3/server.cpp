@@ -39,7 +39,7 @@ int main(){
         int n=epoll_wait(epfd,events,1024,-1);//有n个fd事件发生
         errif(n==-1,"epoll wait error");
         for(int i=0;i<n;i++){
-            if(events[i].data.fd==sockfd){//有新的客户端连接
+            if(events[i].data.fd==sockfd){//有新的客户端连接，这个与后面的一个分支代表着两件事，这个是在启动的时候需要进行监听
                 struct sockaddr_in clnt_addr;
                 socklen_t clnt_addr_len=sizeof(clnt_addr);
                 bzero(&clnt_addr,sizeof(clnt_addr));
